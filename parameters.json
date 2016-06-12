@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertrules_CPUHigh_DevOpsHack201606_name": {
+            "value": null
+        },
+        "alertrules_ForbiddenRequests_DevOpsHack201606_name": {
+            "value": null
+        },
+        "alertrules_LongHttpQueue_DevOpsHack201606_name": {
+            "value": null
+        },
+        "alertrules_ServerErrors_DevOpsHack201606_name": {
+            "value": null
+        },
+        "autoscalesettings_DevOpsHack201606_DevOpsHack201606_name": {
+            "value": null
+        },
+        "components_devopshack201606_name": {
+            "value": null
+        },
+        "serverfarms_DevOpsHack201606_name": {
+            "value": null
+        },
+        "sites_DevOpsHack201606_name": {
+            "value": null
+        }
+    }
+}

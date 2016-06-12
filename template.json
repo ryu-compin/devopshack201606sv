@@ -1,0 +1,333 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertrules_CPUHigh_DevOpsHack201606_name": {
+            "defaultValue": "CPUHigh DevOpsHack201606",
+            "type": "String"
+        },
+        "alertrules_ForbiddenRequests_DevOpsHack201606_name": {
+            "defaultValue": "ForbiddenRequests DevOpsHack201606",
+            "type": "String"
+        },
+        "alertrules_LongHttpQueue_DevOpsHack201606_name": {
+            "defaultValue": "LongHttpQueue DevOpsHack201606",
+            "type": "String"
+        },
+        "alertrules_ServerErrors_DevOpsHack201606_name": {
+            "defaultValue": "ServerErrors DevOpsHack201606",
+            "type": "String"
+        },
+        "autoscalesettings_DevOpsHack201606_DevOpsHack201606_name": {
+            "defaultValue": "DevOpsHack201606-DevOpsHack201606",
+            "type": "String"
+        },
+        "components_devopshack201606_name": {
+            "defaultValue": "devopshack201606",
+            "type": "String"
+        },
+        "serverfarms_DevOpsHack201606_name": {
+            "defaultValue": "DevOpsHack201606",
+            "type": "String"
+        },
+        "sites_DevOpsHack201606_name": {
+            "defaultValue": "DevOpsHack201606",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/alertrules/CPUHigh DevOpsHack201606' から一般化されました。",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_CPUHigh_DevOpsHack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/serverfarms/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "name": "[parameters('alertrules_CPUHigh_DevOpsHack201606_name')]",
+                "description": "The average CPU is high across all the instances of DevOpsHack201606",
+                "condition": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]",
+                        "metricName": "CpuPercentage"
+                    },
+                    "threshold": 90,
+                    "windowSize": "PT15M",
+                    "timeAggregation": "Average"
+                },
+                "action": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/alertrules/ForbiddenRequests DevOpsHack201606' から一般化されました。",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_ForbiddenRequests_DevOpsHack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/sites/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "name": "[parameters('alertrules_ForbiddenRequests_DevOpsHack201606_name')]",
+                "description": "DevOpsHack201606 has some requests that are forbidden, status code 403.",
+                "condition": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('Microsoft.Web/sites', parameters('sites_DevOpsHack201606_name'))]",
+                        "metricName": "Http403"
+                    },
+                    "windowSize": "PT5M",
+                    "timeAggregation": "Total"
+                },
+                "action": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_DevOpsHack201606_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/alertrules/LongHttpQueue DevOpsHack201606' から一般化されました。",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_LongHttpQueue_DevOpsHack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/serverfarms/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "name": "[parameters('alertrules_LongHttpQueue_DevOpsHack201606_name')]",
+                "description": "The HTTP queue for the instances of DevOpsHack201606 has a large number of pending requests.",
+                "condition": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]",
+                        "metricName": "HttpQueueLength"
+                    },
+                    "threshold": 100,
+                    "windowSize": "PT5M",
+                    "timeAggregation": "Total"
+                },
+                "action": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/alertrules/ServerErrors DevOpsHack201606' から一般化されました。",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_ServerErrors_DevOpsHack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/sites/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "name": "[parameters('alertrules_ServerErrors_DevOpsHack201606_name')]",
+                "description": "DevOpsHack201606 has some server errors, status code 5xx.",
+                "condition": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('Microsoft.Web/sites', parameters('sites_DevOpsHack201606_name'))]",
+                        "metricName": "Http5xx"
+                    },
+                    "windowSize": "PT5M",
+                    "timeAggregation": "Total"
+                },
+                "action": {
+                    "$type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_DevOpsHack201606_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/autoscalesettings/DevOpsHack201606-DevOpsHack201606' から一般化されました。",
+            "type": "microsoft.insights/autoscalesettings",
+            "name": "[parameters('autoscalesettings_DevOpsHack201606_DevOpsHack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/serverfarms/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "profiles": [
+                    {
+                        "name": "Default",
+                        "capacity": {
+                            "minimum": "1",
+                            "maximum": "2",
+                            "default": "1"
+                        },
+                        "rules": [
+                            {
+                                "metricTrigger": {
+                                    "metricName": "CpuPercentage",
+                                    "metricNamespace": "",
+                                    "metricResourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT10M",
+                                    "timeAggregation": "Average",
+                                    "operator": "GreaterThan",
+                                    "threshold": 80
+                                },
+                                "scaleAction": {
+                                    "direction": "Increase",
+                                    "type": "ChangeCount",
+                                    "value": "1",
+                                    "cooldown": "PT10M"
+                                }
+                            },
+                            {
+                                "metricTrigger": {
+                                    "metricName": "CpuPercentage",
+                                    "metricNamespace": "",
+                                    "metricResourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]",
+                                    "timeGrain": "PT1M",
+                                    "statistic": "Average",
+                                    "timeWindow": "PT1H",
+                                    "timeAggregation": "Average",
+                                    "operator": "LessThan",
+                                    "threshold": 60
+                                },
+                                "scaleAction": {
+                                    "direction": "Decrease",
+                                    "type": "ChangeCount",
+                                    "value": "1",
+                                    "cooldown": "PT1H"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "enabled": false,
+                "name": "[parameters('autoscalesettings_DevOpsHack201606_DevOpsHack201606_name')]",
+                "targetResourceUri": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/microsoft.insights/components/devopshack201606' から一般化されました。",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_devopshack201606_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "Central US",
+            "tags": {
+                "hidden-link:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/sites/DevOpsHack201606": "Resource"
+            },
+            "properties": {
+                "ApplicationId": "[parameters('components_devopshack201606_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/serverfarms/DevOpsHack201606' から一般化されました。",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "F1",
+                "tier": "Free",
+                "size": "F1",
+                "family": "F",
+                "capacity": 0
+            },
+            "name": "[parameters('serverfarms_DevOpsHack201606_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan East",
+            "properties": {
+                "name": "[parameters('serverfarms_DevOpsHack201606_name')]",
+                "numberOfWorkers": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/sites/DevOpsHack201606' から一般化されました。",
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('sites_DevOpsHack201606_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan East",
+            "tags": {
+                "hidden-related:/subscriptions/0d728635-5dd9-4225-82da-aeeed62b3680/resourceGroups/DevOpsHack201606/providers/Microsoft.Web/serverfarms/DevOpsHack201606": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_DevOpsHack201606_name')]",
+                "hostNames": [
+                    "devopshack201606.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "devopshack201606.azurewebsites.net",
+                    "devopshack201606.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_DevOpsHack201606_name'),'devopshack201606.azurewebsites.net')]",
+                        "sslState": 0,
+                        "ipBasedSslResult": null,
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "toUpdateIpBasedSsl": null,
+                        "ipBasedSslState": 0,
+                        "hostType": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_DevOpsHack201606_name'),'devopshack201606.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "ipBasedSslResult": null,
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "toUpdateIpBasedSsl": null,
+                        "ipBasedSslState": 0,
+                        "hostType": 1
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_DevOpsHack201606_name'))]"
+            ]
+        }
+    ]
+}
